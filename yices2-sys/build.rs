@@ -13,13 +13,13 @@ use xz::read::XzDecoder;
 
 const CUDD: &str = "cudd-3.0.0.tar.gz";
 const GMP: &str = "gmp-6.3.0.tar.xz";
-const POLY: &str = "libpoly-0.1.13.tar.gz";
-const YICES: &str = "yices-2.6.4-src.tar.gz";
+const POLY: &str = "libpoly-0.2.0.tar.gz";
+const YICES: &str = "yices-2.7.0.tar.gz";
 
 const CUDD_OUT: &str = "cudd-3.0.0";
 const GMP_OUT: &str = "gmp-6.3.0";
-const POLY_OUT: &str = "libpoly-0.1.13";
-const YICES_OUT: &str = "yices2-Yices-2.6.4";
+const POLY_OUT: &str = "libpoly-0.2.0";
+const YICES_OUT: &str = "yices2-Yices-2.7.0";
 
 fn check_command(command: &mut Command) -> Result<()> {
     command
@@ -347,7 +347,8 @@ where
                 prefix()?.join("include").display()
             ))
             .arg(format!("--prefix={}", prefix()?.display()))
-            .arg(format!("--exec-prefix={}", prefix()?.display())),
+            .arg(format!("--exec-prefix={}", prefix()?.display()))
+            .arg("--enable-thread-safety"),
     )?;
 
     check_command(
