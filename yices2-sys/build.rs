@@ -270,6 +270,7 @@ where
             .arg("-DLIBPOLY_BUILD_PYTHON_API=OFF")
             .arg("-DLIBPOLY_BUILD_STATIC_PIC=ON")
             .arg("-DLIBPOLY_BUILD_STATIC=ON")
+            .arg("-DCMAKE_BUILD_SHARED_LIBS=OFF")
             .arg("-DLIBPOLY_BUILD_STATISTICS=OFF")
             .arg(format!(
                 "-DCMAKE_C_FLAGS=-I{}",
