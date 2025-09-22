@@ -19,7 +19,7 @@ const YICES: &str = "yices-2.7.0.tar.gz";
 const CUDD_OUT: &str = "cudd-3.0.0";
 const GMP_OUT: &str = "gmp-6.3.0";
 const POLY_OUT: &str = "libpoly-0.2.0";
-const YICES_OUT: &str = "yices2-Yices-2.7.0";
+const YICES_OUT: &str = "yices2-yices-2.7.0";
 
 fn check_command(command: &mut Command) -> Result<()> {
     command
