@@ -270,7 +270,6 @@ where
             .arg("-DLIBPOLY_BUILD_PYTHON_API=OFF")
             .arg("-DLIBPOLY_BUILD_STATIC_PIC=ON")
             .arg("-DLIBPOLY_BUILD_STATIC=ON")
-            .arg("-DCMAKE_BUILD_SHARED_LIBS=OFF")
             .arg("-DLIBPOLY_BUILD_STATISTICS=OFF")
             .arg(format!(
                 "-DCMAKE_C_FLAGS=-I{}",
@@ -321,6 +320,9 @@ where
             .env("CC", cc_name()?)
             .env("CXX", cxx_name()?)
             .env("LDFLAGS", format!("-L{}", prefix()?.join("lib").display()))
+            // Needed because configure accidentally links against
+            // shared libraries but then can't find them...
+            .env("LD_LIBRARY_PATH", format!("{}", prefix()?.join("lib").display()))
             // NOTE: C PreProcessor flags
             .env(
                 "CPPFLAGS",
