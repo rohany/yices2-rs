@@ -19,7 +19,7 @@ const YICES: &str = "yices-2.7.0.tar.gz";
 const CUDD_OUT: &str = "cudd-3.0.0";
 const GMP_OUT: &str = "gmp-6.3.0";
 const POLY_OUT: &str = "libpoly-0.2.0";
-const YICES_OUT: &str = "yices2-Yices-2.7.0";
+const YICES_OUT: &str = "yices2-yices-2.7.0";
 
 fn check_command(command: &mut Command) -> Result<()> {
     command
@@ -320,6 +320,9 @@ where
             .env("CC", cc_name()?)
             .env("CXX", cxx_name()?)
             .env("LDFLAGS", format!("-L{}", prefix()?.join("lib").display()))
+            // Needed because configure accidentally links against
+            // shared libraries but then can't find them...
+            .env("LD_LIBRARY_PATH", format!("{}", prefix()?.join("lib").display()))
             // NOTE: C PreProcessor flags
             .env(
                 "CPPFLAGS",
